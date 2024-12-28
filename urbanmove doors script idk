@@ -1,0 +1,27 @@
+wait(2)
+local ServerManager = script.Parent.Parent.Driver.ServerManager
+
+while wait(0) do
+	if script.Parent.DoorOpen.Value == true and script.Parent.DoorClose.Value == true then
+		script.Parent.DoorClose.Value = false
+		if ServerManager.BLeft.Value == script.Parent.LeftDoor.Value then
+			script.Parent.MotorL1.DesiredAngle = -2.9
+			script.Parent.MotorR1.DesiredAngle = -2.9
+			script.Parent.MotorL2.DesiredAngle = -2.9
+			script.Parent.MotorR2.DesiredAngle = -2.9
+		else
+			script.Parent.MotorL1.DesiredAngle = 0
+			script.Parent.MotorR1.DesiredAngle = 0
+			script.Parent.MotorL2.DesiredAngle = 0
+			script.Parent.MotorR2.DesiredAngle = 0
+		end
+	end
+	if script.Parent.DoorOpen.Value == false and script.Parent.DoorClose.Value == false then
+		script.Parent.DoorClose.Value = true
+		script.Parent.MotorL1.DesiredAngle = 0
+		script.Parent.MotorR1.DesiredAngle = 0
+		script.Parent.MotorL2.DesiredAngle = 0
+		script.Parent.MotorR2.DesiredAngle = 0
+	end
+	script.Parent.DoorOpen.Value = script.Parent.Parent.Driver.Doors.Value
+end
